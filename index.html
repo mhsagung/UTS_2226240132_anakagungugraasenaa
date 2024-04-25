@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simulasi Pembayaran THR</title>
+    <script>
+        function hitungTHR() {
+            var gajiPokok = parseFloat(document.getElementById('gajiPokok').value);
+            var tunjanganTetap = parseFloat(document.getElementById('tunjanganTetap').value);
+            var masaKerja = parseInt(document.getElementById('masaKerja').value);
+
+            var THR = 0;
+            if (masaKerja >= 1 && masaKerja <= 5) {
+                THR = 1 * gajiPokok + tunjanganTetap;
+            } else if (masaKerja >= 6 && masaKerja <= 10) {
+                THR = 2 * gajiPokok + tunjanganTetap;
+            } else if (masaKerja > 10) {
+                THR = 3 * gajiPokok + tunjanganTetap;
+            }
+
+            var output = document.getElementById('output');
+            output.innerHTML = "Total THR yang akan diterima adalah sebesar " + THR.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + ".";
+        }
+    </script>
+</head>
+<body style="background-color: aliceblue;">
+    <h1>Simulasi Pembayaran THR</h1>
+    <label for="gajiPokok">Gaji Pokok:</label>
+    <input type="number" id="gajiPokok" placeholder="Gaji Pokok">
+    <br><br>
+    <label for="tunjanganTetap">Tunjangan Tetap:</label>
+    <input type="number" id="tunjanganTetap" placeholder="Tunjangan Tetap">
+    <br><br>
+    <label for="masaKerja">Masa Kerja (dalam tahun):</label>
+    <input type="number" id="masaKerja" placeholder="Masa Kerja">
+    <br><br>
+    <button onclick="hitungTHR()">Hitung THR</button>
+    <br><br>
+    <p id="output"></p>
+    <hr>
+</body>
+
+<head>
+    <script>
+        function hitungGajiTHR() {
+            var gajiPokok = parseFloat(document.getElementById('gajiPokok').value);
+            var tunjanganTetap = parseFloat(document.getElementById('tunjanganTetap').value);
+            var masaKerja = parseFloat(document.getElementById('masaKerja').value);
+
+            var totalGaji = gajiPokok + tunjanganTetap;
+            var THR = 0;
+
+            if (masaKerja >= 12) {
+                THR = totalGaji;
+            } else if (masaKerja < 12) {
+                THR = (masaKerja / 12) * totalGaji;
+            }
+
+            var output = document.getElementById('output');
+            output.innerHTML = "Total Gaji: " + totalGaji.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + "<br>";
+            output.innerHTML += "THR: " + THR.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        }
+    </script>
+</head>
+<body>
+    <h1>Simulasi Pembayaran Gaji dan THR</h1>
+    <label for="gajiPokok">Gaji Pokok:</label>
+    <input type="number" id="gajiPokok" placeholder="Gaji Pokok">
+    <br><br>
+    <label for="tunjanganTetap">Tunjangan Tetap:</label>
+    <input type="number" id="tunjanganTetap" placeholder="Tunjangan Tetap">
+    <br><br>
+    <label for="masaKerja">Masa Kerja (dalam bulan):</label>
+    <input type="number" id="masaKerja" placeholder="Masa Kerja">
+    <br><br>
+    <button onclick="hitungGajiTHR()">Hitung Gaji dan THR</button>
+    <br><br>
+    <div id="output"></div>
+    <hr>
+</body>
+
+<script>
+    function hitungPajak(totalGaji) {
+        var PTKP = 4500000; // Pendapatan Tidak Kena Pajak
+
+        if (totalGaji <= PTKP) {
+            return 0;
+        } else {
+            return (totalGaji - PTKP) * 0.05;
+        }
+    }
+
+    function hitungTHRdanPajak() {
+        var gajiPokok = parseFloat(document.getElementById('gajiPokok').value);
+        var tunjanganTetap = parseFloat(document.getElementById('tunjanganTetap').value);
+
+        var totalGaji = gajiPokok + tunjanganTetap;
+        var THR = totalGaji;
+
+        var pph = hitungPajak(totalGaji);
+
+        var totalPembayaran = THR + pph;
+
+        var output = document.getElementById('output');
+        output.innerHTML = "THR: " + THR.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + "<br>";
+        output.innerHTML += "PPH Ps. 21: " + pph.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' }) + "<br>";
+        output.innerHTML += "Total Pembayaran: " + totalPembayaran.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    }
+</script>
+</head>
+<body>
+<h1>Simulasi Pembayaran THR dan PPH Ps. 21</h1>
+<label for="gajiPokok">Gaji Pokok:</label>
+<input type="number" id="gajiPokok" placeholder="Gaji Pokok">
+<br><br>
+<label for="tunjanganTetap">Tunjangan Tetap:</label>
+<input type="number" id="tunjanganTetap" placeholder="Tunjangan Tetap">
+<br><br>
+<button onclick="hitungTHRdanPajak()">Hitung THR, PPH, dan Total Pembayaran</button>
+<br><br>
+<div id="output"></div>
+<hr>
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Look Into Yourself</h1>
+    <p>
+        <b><u>Look into yourself,</u></b><br>
+        Release your heart free<br>
+        Look into yourself,<br>
+        and be the master of your destiny
+    </p>
+</body>
+
+</html>
+
+</html>
